@@ -188,6 +188,7 @@
 #ifndef AccelStepper_h
 #define AccelStepper_h
 
+#include <stdint.h>
 #include <wiringPi.h>
 
 /////////////////////////////////////////////////////////////////////

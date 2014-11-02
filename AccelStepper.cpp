@@ -4,6 +4,21 @@
 // $Id: AccelStepper.cpp,v 1.18 2014/06/09 21:35:59 mikem Exp mikem $
 
 #include "AccelStepper.h"
+#include <algorithm>
+#include <cmath>
+
+template<class T>
+const T& constrain(const T& x, const T& a, const T& b) {
+    if(x < a) {
+        return a;
+    }
+    else if(b < x) {
+        return b;
+    }
+    else
+        return x;
+}
+
 
 #if 0
 // Some debugging assistance
@@ -157,7 +172,7 @@ void AccelStepper::computeNewSpeed()
     {
 	// Subsequent step. Works for accel (n is +_ve) and decel (n is -ve).
 	_cn = _cn - ((2.0 * _cn) / ((4.0 * _n) + 1)); // Equation 13
-	_cn = max(_cn, _cmin);
+	_cn = std::max(_cn, _cmin);
     }
     _n++;
     _stepInterval = _cn;
